@@ -10,7 +10,7 @@
        <li><a href="#/active" @click="filterTodo('active')" :class="{selected:$parent.view=='active'}">Active</a></li>
        <li><a href="#/completed" @click="filterTodo('completed')" :class="{selected:$parent.view=='completed'}"> Completed</a></li>
      </ul>
-     <button class="clear-completed">Clear Completed</button>
+     <button class="clear-completed" @click="clearCompleted">Clear Completed</button>
    </footer>
 </template>
 
@@ -20,6 +20,11 @@ export default {
   methods: {
     filterTodo(value){
         this.$parent.view=value;
+    },
+    clearCompleted(){
+        this.$parent.todoDatas=this.$parent.todoDatas.filter(todo=>{
+            return !todo.hasCompleted;
+        })
     }
   },
   computed:{
