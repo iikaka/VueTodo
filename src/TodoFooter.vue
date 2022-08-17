@@ -1,8 +1,9 @@
 <template>
    <footer class="footer">
      <span class="todo-count">
-       <span>0 </span>
-       <span> item left</span>
+       <span>{{todoNum}}</span>
+       <span v-if="todoNum<=1"> item left</span>
+       <span v-else> items left</span>
      </span>
      <ul class="filters">
        <li><a href="#/all" class="selected">All</a></li>
@@ -15,7 +16,19 @@
 
 <script>
 export default {
-  name: "TodoFooter"
+  name: "TodoFooter",
+  data(){
+    return{
+
+    }
+  },
+  computed:{
+    todoNum(){
+        return this.$parent.todoDatas.filter(value=>{
+            return !value.hasCompleted
+        }).length
+    }
+  }
 }
 </script>
 
