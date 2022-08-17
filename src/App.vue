@@ -8,7 +8,7 @@
          <input type="checkbox" id="toggle-all" class="toggle-all" v-model="isAll">
         <label for="toggle-all" ></label>
         <ul class="todo-list">
-             <todo-item v-for="todo in todoDatas" :key="todo.id" :todo="todo"></todo-item>
+             <todo-item v-for="todo in filterTodoDatas" :key="todo.id" :todo="todo"></todo-item>
         </ul>
       </section>
      <todo-footer></todo-footer>
@@ -25,6 +25,7 @@ export default {
       return{
         todoDatas:[],
         newTodo:'',
+        view:'all'
       }
     },
     methods:{
@@ -48,6 +49,22 @@ export default {
               todo.hasCompleted=value;
               return value;
             })
+          }
+        },
+        filterTodoDatas(){
+          switch (this.view){
+            case 'all':
+              return this.todoDatas;
+            case 'active':
+              return this.todoDatas.filter(todo=>{
+                return !todo.hasCompleted
+              })
+            case 'completed':
+              return this.todoDatas.filter(todo=>{
+                return todo.hasCompleted
+              })
+            default:
+              return this.todoDatas
           }
         }
       }

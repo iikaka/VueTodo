@@ -1,7 +1,7 @@
 <template>
    <li :class="{completed:todo.hasCompleted,editing:editedTodo==todo}">
      <div class="view">
-       <input type="checkbox" class="toggle" v-model="check">
+       <input type="checkbox" class="toggle"  v-model="check">
        <label @dblclick="editTodo">{{todo.value}}</label>
        <button class="destroy" @click="delTodo"></button>
      </div>
@@ -45,7 +45,8 @@
         computed:{
             check:{
                 get(){
-                    return this.todo.haoCompleted
+                    console.log("get")
+                    return this.todo.hasCompleted
                 },
                 set(value){  
                     this.$parent.todoDatas=this.$parent.todoDatas.map(v=>{
