@@ -1,28 +1,31 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <section class="todoapp">
+    <header class="header">
+      <h1>Todos</h1>
+      <input type="text" class="new-todo">
+    </header>
+    <section class="main">
+        <input type="checkbox" id="toggle-all" class="toggle-all">
+        <label for="toggle-all"></label>
+        <ul class="todo-list">
+             <todo-item></todo-item>
+             <todo-item></todo-item>
+             <todo-item></todo-item>
+        </ul>
+      </section>
+     <todo-footer></todo-footer>
+  </section>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+import TodoItem from '@/TodoItem.vue';
+import TodoFooter from '@/TodoFooter.vue'
+  export default {
+    name:'App',
+    components:{TodoItem,TodoFooter}
   }
-}
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style  scoped>
+
 </style>
